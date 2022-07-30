@@ -1,7 +1,7 @@
 {
   "name": "numbersgame",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -18,7 +18,13 @@
     "react-native-web": "0.17.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "eslint": "^8.20.0",
+    "eslint-config-universe": "^11.0.0",
+    "prettier": "^2.7.1"
+  },
+  "eslintConfig": {
+      "extends": "universe/native"
   },
   "private": true
 }
