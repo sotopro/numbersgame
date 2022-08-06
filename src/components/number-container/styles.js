@@ -14,5 +14,6 @@ export const styles = StyleSheet.create({
   number: {
     color: colors.primary,
     fontSize: 13,
+    fontFamily: 'Lato-Bold',
   },
 });

@@ -7,5 +7,6 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.primary,
     borderBottomWidth: 1,
     paddingVertical: 10,
+    fontFamily: 'Lato-Regular',
   },
 });

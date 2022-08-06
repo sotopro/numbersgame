@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     color: colors.text,
     textAlign: 'center',
     paddingVertical: 20,
+    fontFamily: 'Lato-Bold',
   },
   card: {
     flex: 1,
@@ -29,12 +30,14 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.text,
     paddingVertical: 5,
+    fontFamily: 'Lato-Regular',
   },
   input: {
     width: '100%',
     maxWidth: 110,
     fontSize: 25,
     textAlign: 'center',
+    fontFamily: 'Lato-Regular',
   },
   buttonContainer: {
     marginHorizontal: 20,
