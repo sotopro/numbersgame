@@ -1,15 +1,37 @@
-import React from 'react';
-import { View, Text, Button, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button, Image, Dimensions } from 'react-native';
 
 import { Card } from '../../components';
 import { styles } from './styles';
 
 const GameOver = ({ onRestart, rounds, choice }) => {
+  const [isPortrait, setIsPortrait] = useState(true);
+
+  const onPortrait = () => {
+    const dim = Dimensions.get('screen');
+    console.warn(dim);
+    return dim.height >= dim.width;
+  };
+
+  useEffect(() => {
+    console.log('useEffect');
+    Dimensions.addEventListener('change', () => {
+      setIsPortrait(onPortrait());
+    });
+    return () => {
+      Dimensions.removeEventListener('change', () => {
+        setIsPortrait(true);
+      });
+    };
+  });
+
+  console.log(isPortrait);
+
   return (
-    <View style={styles.container}>
+    <View style={isPortrait ? styles.container : styles.containerLandscape}>
       <Image
         source={require('../../../assets/game-over.jpg')}
-        style={styles.image}
+        style={isPortrait ? styles.image : styles.imageLandscape}
         resizeMode="contain"
       />
       <Card style={styles.card}>

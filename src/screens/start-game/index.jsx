@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  TouchableWithoutFeedback,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 
 import { Card, Input, NumberContainer } from '../../components';
 import colors from '../../constants/colors';
 import { styles } from './styles';
+
+const isAndroid = Platform.OS === 'android';
 
 const StartGame = ({ onStartGame }) => {
   const [enteredValue, setEnteredValue] = useState('');
@@ -39,34 +50,50 @@ const StartGame = ({ onStartGame }) => {
   );
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Comenzar juego</Text>
-        <Card style={styles.card}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Elija un numero</Text>
-            <Input
-              style={styles.input}
-              blurOnSubmit
-              autoCapitalize="none"
-              autoCorrect={false}
-              keyboardType="numeric"
-              maxLength={2}
-              onChangeText={onNumberChange}
-              value={enteredValue}
-            />
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={isAndroid ? 'padding' : 'position'}
+      contentContainerStyle={styles.container}
+      keyboardVerticalOffset={30}>
+      <ScrollView>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
+          }}>
+          <View style={styles.container}>
+            <Text style={styles.title}>Comenzar juego</Text>
+            <Card style={styles.card}>
+              <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Elija un numero</Text>
+                <Input
+                  style={styles.input}
+                  blurOnSubmit
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  keyboardType="numeric"
+                  maxLength={2}
+                  onChangeText={onNumberChange}
+                  value={enteredValue}
+                />
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Confirmar"
+                  onPress={() => onHandleConfirm()}
+                  color={colors.secondary}
+                />
+                <Button
+                  title="Limpiar"
+                  onPress={() => onResetInput()}
+                  color={colors.cancelButton}
+                />
+              </View>
+            </Card>
+            {confirmed && confirmedOutput()}
           </View>
-          <View style={styles.buttonContainer}>
-            <Button title="Confirmar" onPress={() => onHandleConfirm()} color={colors.secondary} />
-            <Button title="Limpiar" onPress={() => onResetInput()} color={colors.cancelButton} />
-          </View>
-        </Card>
-        {confirmed && confirmedOutput()}
-      </View>
-    </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
