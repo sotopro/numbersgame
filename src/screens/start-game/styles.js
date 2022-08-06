@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 20,
     paddingVertical: 20,
+    marginBottom: 20,
   },
   inputContainer: {
     marginHorizontal: 20,
@@ -41,4 +42,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 20,
   },
+  summaryContainer: {
+    marginHorizontal: 20,
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  summaryText: {},
 });
