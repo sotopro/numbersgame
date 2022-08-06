@@ -31,11 +31,9 @@ export const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    borderBottomColor: colors.primary,
-    borderBottomWidth: 1,
     maxWidth: 110,
     fontSize: 25,
-    paddingVertical: 10,
+    textAlign: 'center',
   },
   buttonContainer: {
     marginHorizontal: 20,
