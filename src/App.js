@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
 
 import { Header } from './components';
+import GameOver from './screens/game-over';
 import GameScreen from './screens/game-screen';
 import StartGame from './screens/start-game';
 import { styles } from './styles';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [guessRounds, setGuessRounds] = useState(0);
   const [loaded] = useFonts({
     'Lato-Regular': require('../assets/fonts/Lato-Regular.ttf'),
     'Lato-Bold': require('../assets/fonts/Lato-Bold.ttf'),
@@ -18,9 +20,17 @@ export default function App() {
     'Lato-Italic': require('../assets/fonts/Lato-Italic.ttf'),
   });
 
-  const title = !userNumber ? 'Adivina el numero' : 'Inicio de Juego';
   const onStartGame = (selectedNumber) => {
     setUserNumber(selectedNumber);
+  };
+
+  const onGameOver = (rounds) => {
+    setGuessRounds(rounds);
+  };
+
+  const onRestartGame = () => {
+    setUserNumber(null);
+    setGuessRounds(0);
   };
 
   if (!loaded) {
@@ -29,13 +39,15 @@ export default function App() {
 
   let content = <StartGame onStartGame={onStartGame} />;
 
-  if (userNumber) {
-    content = <GameScreen userOption={userNumber} />;
+  if (userNumber && guessRounds <= 0) {
+    content = <GameScreen userOption={userNumber} onGameOver={onGameOver} />;
+  } else if (guessRounds > 0) {
+    content = <GameOver choice={userNumber} rounds={guessRounds} onRestart={onRestartGame} />;
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={title} />
+      <Header title="Adivina el numero" />
       {content}
     </SafeAreaView>
   );

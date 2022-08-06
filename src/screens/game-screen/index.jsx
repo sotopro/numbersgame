@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 
 import { Card, NumberContainer } from '../../components';
@@ -23,7 +23,6 @@ const GameScreen = ({ userOption, onGameOver }) => {
   const currentHigh = useRef(100);
 
   const onHandleNextGuess = (direction) => {
-    console.warn(currentGuess, userOption);
     if (
       (direction === 'lower' && currentGuess < userOption) ||
       (direction === 'greater' && currentGuess > userOption)
