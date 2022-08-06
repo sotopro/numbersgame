@@ -14,8 +14,6 @@ export const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
   },
   card: {
-    flex: 1,
-    flexGrow: 0.25,
     justifyContent: 'center',
     marginHorizontal: 20,
     paddingVertical: 20,

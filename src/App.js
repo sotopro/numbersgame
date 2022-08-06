@@ -30,7 +30,7 @@ export default function App() {
   let content = <StartGame onStartGame={onStartGame} />;
 
   if (userNumber) {
-    content = <GameScreen />;
+    content = <GameScreen userOption={userNumber} />;
   }
 
   return (
