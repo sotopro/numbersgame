@@ -9,23 +9,19 @@ const GameOver = ({ onRestart, rounds, choice }) => {
 
   const onPortrait = () => {
     const dim = Dimensions.get('screen');
-    console.warn(dim);
     return dim.height >= dim.width;
   };
 
+  const statePortrait = () => {
+    setIsPortrait(onPortrait);
+  };
+
   useEffect(() => {
-    console.log('useEffect');
-    Dimensions.addEventListener('change', () => {
-      setIsPortrait(onPortrait());
-    });
+    Dimensions.addEventListener('change', statePortrait());
     return () => {
-      Dimensions.removeEventListener('change', () => {
-        setIsPortrait(true);
-      });
+      Dimensions.removeEventListener('change', statePortrait());
     };
   });
-
-  console.log(isPortrait);
 
   return (
     <View style={isPortrait ? styles.container : styles.containerLandscape}>
